@@ -29,4 +29,21 @@ it should use today’s date to get the month and year.
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import date
+
+today = date.today()
+
+input = sys.argv
+input.pop(0)
+y = [(int(i)) for i in input]
+y.sort(reverse=True)
+if len(y) < 1:
+  y.append(int(today.strftime("%Y")))
+  y.append(int(today.strftime("%m")))
+elif len(y) < 2:
+  y.insert(0, int(today.strftime("%Y")))
+elif len(y) > 2:
+  print("This program has two parameters: [month] and [year]")
+  sys.exit()
+print(calendar.month(*y))
+
